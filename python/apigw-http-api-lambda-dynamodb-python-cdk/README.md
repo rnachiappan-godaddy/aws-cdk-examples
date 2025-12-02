@@ -6,7 +6,15 @@
 
 Creates an [AWS Lambda](https://aws.amazon.com/lambda/) function writing to [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) and invoked by [Amazon API Gateway](https://aws.amazon.com/api-gateway/) REST API. 
 
+This sample includes AWS X-Ray tracing for end-to-end observability across API Gateway, Lambda, and DynamoDB.
+
 ![architecture](docs/architecture.png)
+
+## Features
+
+- **AWS X-Ray Tracing**: End-to-end distributed tracing enabled for API Gateway and Lambda
+- **VPC Isolation**: Lambda function runs in private isolated subnets
+- **VPC Endpoint**: DynamoDB access via VPC endpoint for enhanced security
 
 ## Setup
 
@@ -84,6 +92,12 @@ You should get below response
 ```json
 {"message": "Successfully inserted data!"}
 ```
+
+### Viewing X-Ray Traces
+After making API requests, you can view distributed traces in the AWS X-Ray console:
+1. Navigate to AWS X-Ray console
+2. Select "Service map" to visualize the request flow
+3. Select "Traces" to view detailed trace information including latency and errors
 
 ## Cleanup 
 Run below script to delete AWS resources created by this sample stack.
