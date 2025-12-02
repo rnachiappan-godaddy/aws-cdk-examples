@@ -6,6 +6,10 @@ import os
 import json
 import logging
 import uuid
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all
+
+patch_all()
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
