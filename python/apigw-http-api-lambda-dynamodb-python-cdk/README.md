@@ -6,13 +6,15 @@
 
 Creates an [AWS Lambda](https://aws.amazon.com/lambda/) function writing to [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) and invoked by [Amazon API Gateway](https://aws.amazon.com/api-gateway/) REST API. 
 
-This sample includes AWS X-Ray tracing for end-to-end observability across API Gateway, Lambda, and DynamoDB.
+This sample includes AWS X-Ray tracing for end-to-end observability and comprehensive logging for security event detection and investigation.
 
 ![architecture](docs/architecture.png)
 
 ## Features
 
 - **AWS X-Ray Tracing**: End-to-end distributed tracing enabled for API Gateway and Lambda
+- **Comprehensive Logging**: API Gateway access/execution logs, Lambda structured logging, and VPC Flow Logs
+- **DynamoDB Point-in-Time Recovery**: Data protection and audit capabilities
 - **VPC Isolation**: Lambda function runs in private isolated subnets
 - **VPC Endpoint**: DynamoDB access via VPC endpoint for enhanced security
 
@@ -98,6 +100,15 @@ After making API requests, you can view distributed traces in the AWS X-Ray cons
 1. Navigate to AWS X-Ray console
 2. Select "Service map" to visualize the request flow
 3. Select "Traces" to view detailed trace information including latency and errors
+
+### Viewing Logs
+Logs are available in CloudWatch Logs for security investigation and troubleshooting:
+1. **API Gateway Access Logs**: Navigate to CloudWatch Logs → Log group `/aws/apigateway/access-logs`
+2. **API Gateway Execution Logs**: Available in API Gateway stage logs
+3. **Lambda Function Logs**: Navigate to CloudWatch Logs → Log group `/aws/lambda/apigw_handler`
+4. **VPC Flow Logs**: Navigate to CloudWatch Logs → VPC Flow Logs log group
+
+Use CloudWatch Logs Insights to query and analyze logs for security events and operational issues.
 
 ## Cleanup 
 Run below script to delete AWS resources created by this sample stack.
